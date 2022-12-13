@@ -19,7 +19,7 @@ Istio Instalation (tested on istio-1.16.1)
 ## Download the source code
 
 ```
-Git clone https://github.com/mosesalphonse/GraphQL-Microprofile-Quarkus.git
+git clone https://github.com/mosesalphonse/GraphQL-Microprofile-Quarkus.git
 
 cd GraphQL-Microprofile-Quarkus
 
@@ -33,8 +33,8 @@ quarkus.container-image.group=<<gcp project id>>
 ```
 mvn clean package -Dnative -Dquarkus.container-image.push=true
 
-Kubectl apply -f yamls/manifest.yaml
-Kubectl apply -f yamls/network.yaml
+kubectl apply -f yamls/manifest.yaml
+kubectl apply -f yamls/network.yaml
 
 ```
 ## Verify
@@ -61,7 +61,7 @@ curl 'http://{ingressIP}/graphql' --data-raw '{"query":"{\n  allFilms {\n    dir
 ## Cleanup
 
 ```
-Kubectl delete -f yamls/manifest.yaml
-Kubectl delete -f yamls/network.yaml
+kubectl delete -f yamls/manifest.yaml
+kubectl delete -f yamls/network.yaml
 
 ```
