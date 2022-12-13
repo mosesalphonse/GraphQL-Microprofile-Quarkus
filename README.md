@@ -33,8 +33,8 @@ quarkus.container-image.group=<<gcp project id>>
 ```
 mvn clean package -Dnative -Dquarkus.container-image.push=true
 
-kubectl apply -f yamls/manifest.yaml
-kubectl apply -f yamls/network.yaml
+kubectl apply -f yaml/manifest.yaml
+kubectl apply -f yaml/network.yaml
 
 ```
 ## Verify
@@ -61,7 +61,7 @@ curl 'http://{ingressIP}/graphql' --data-raw '{"query":"{\n  allFilms {\n    dir
 ## Cleanup
 
 ```
-kubectl delete -f yamls/manifest.yaml
-kubectl delete -f yamls/network.yaml
+kubectl delete -f yaml/manifest.yaml
+kubectl delete -f yaml/network.yaml
 
 ```
