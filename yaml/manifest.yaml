@@ -1,0 +1,53 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: sash-account
+  labels:
+    account: sash
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: graphql-quarkus-svc
+  labels:
+    app: graphql-quarkus
+    service: graphql-quarkus
+spec:
+  ports:
+  - port: 8080
+    name: http
+  selector:
+    app: graphql-quarkus
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: graphql-quarkus
+  labels:
+    app: graphql-quarkus
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: graphql-quarkus
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: graphql-quarkus
+        version: v1
+    spec:
+      serviceAccountName: sash-account
+      containers:
+      - name: graphql-quarkus
+        image: gcr.io/linear-potion-367916/sash-microprofile-graphql:1.0.0-SNAPSHOT
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+        resources:
+          limits:
+            cpu: 400m
+          requests:
+            cpu: 200m
+---
